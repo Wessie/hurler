@@ -7,27 +7,30 @@ A decorator based filtering mechanism of function calls. Hurler allows you to de
 Example
 -------
 
-A simple example showing how our `printer` function is only called when the `number` argument is lower than 5.
+A simple example showing how our `printer` function is only called when the condition `number < 5` is `True`.
 
-    from hurler import filter
+```python
+from hurler import filter
 
-    @filter
-    def lower_than_five(number):
-        return number < 5
+@filter
+def lower_than_five(number):
+    return number < 5
 
-    @lower_than_five
-    def printer(number):
-        print("Received: %d" % number)
+@lower_than_five
+def printer(number):
+    print("Received: %d" % number)
+```
 
 And now we can call `printer` with our filter in place.
 
-    >>> printer(0) # 0 < 5 == True
-    Received: 0
-    >>> printer(10) # 10 < 5 == False, `printer` doesn't get called.
-    >>> printer(100) # 100 < 5 == False, `printer` doesn't get called.
-    >>> printer(4) # 4 < 5 == True
-    Received: 4
-
+```python
+>>> printer(0) # 0 < 5 == True
+Received: 0
+>>> printer(10) # 10 < 5 == False, `printer` doesn't get called.
+>>> printer(100) # 100 < 5 == False
+>>> printer(4) # 4 < 5 == True
+Received: 4
+```
 
 Why?
 ----
@@ -36,8 +39,8 @@ Hurler was originally created for inclusion in an IRC library, it fills the role
 
 With `hurler` we could keep the basic callback system simple, it only requires registering a function with an `event_name`.
 
-Callbacks for say, a specific message string or nickname is now done through `hurler` filters. Instead of repeating
-ourself in every callback that required it. An alternative to `hurler` creating different `register` method that take extra
+Callbacks for say, a specific message string or nickname is now done through hurler filters. Instead of repeating
+ourself in every callback that required it. An alternative to hurler is creating different `register` methods that take extra
 arguments to determine your filter on registration, this gets messy quickly in the callback implementation.
 
 
