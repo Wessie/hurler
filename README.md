@@ -24,13 +24,17 @@ def printer(number):
 And now we can call `printer` with our filter in place.
 
 ```python
->>> printer(0) # 0 < 5 == True
+>>> printer(0)      # 0 < 5 == True
 Received: 0
->>> printer(10) # 10 < 5 == False, `printer` doesn't get called.
->>> printer(100) # 100 < 5 == False
->>> printer(4) # 4 < 5 == True
+>>> printer(10)     # 10 < 5 == False, `printer` doesn't get called.
+>>> printer(100)    # 100 < 5 == False
+>>> printer(4)      # 4 < 5 == True
 Received: 4
 ```
+
+For examples of the more advanced `filter` function see the `test_example.py` file in the `hurler` package. This file
+is part of the testing and seconds as a good example for usage.
+
 
 Why?
 ----
