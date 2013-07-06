@@ -66,13 +66,6 @@ class Filter(object):
         """
         self._filters.append(filter)
 
-    def add_filters(self, filters):
-        """
-        Does the same as :meth:`add_filter` but instead expects an iterator
-        of filters to add.
-        """
-        self._filters += filters
-
     def __call__(self, *args, **kwargs):
         if self.check_filter(args, kwargs):
             return self._callback(*args, **kwargs)
@@ -92,7 +85,7 @@ def filter(filter_creator):
 
     def function_getter(function):
         if isinstance(function, Filter):
-            function.add_filters(filter)
+            function.add_filter(filter)
 
             return function
         else:

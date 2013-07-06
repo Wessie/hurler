@@ -20,7 +20,12 @@ def always_true(*args, **kwargs):
     return True
 
 
-def test_chaining():
+@filter
+def always_normal_true():
+    return lambda *args, **kwargs: True
+
+
+def test_simple_chaining():
     """
     Tests the ability to chain filters.
     """
@@ -32,7 +37,7 @@ def test_chaining():
     assert tester("x") == "xx"
 
 
-def test_non_filter_chaining():
+def test_simple_non_chaining():
     """
     Tests the ability to chain filters with interruptions in the chain.
     """
@@ -47,6 +52,37 @@ def test_non_filter_chaining():
         if i % 25 == 0:
             tester = interrupt(tester)
         tester = always_true(tester)
+
+    assert tester("x") == "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+
+def test_normal_chaining():
+    """
+    Tests the ability to chain filters.
+    """
+    tester = lambda x: x + x
+
+    for i in xrange(100):
+        tester = always_normal_true()(tester)
+
+    assert tester("x") == "xx"
+
+
+def test_normal_non_chaining():
+    """
+    Tests the ability to chain filters with interruptions in the chain.
+    """
+    tester = lambda x: x + x
+
+    def interrupt(func):
+        def wrapper(x):
+            return func(x + x)
+        return wrapper
+
+    for i in xrange(100):
+        if i % 25 == 0:
+            tester = interrupt(tester)
+        tester = always_normal_true()(tester)
 
     assert tester("x") == "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
