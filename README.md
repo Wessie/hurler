@@ -10,9 +10,9 @@ Example
 A simple example showing how our `printer` function is only called when the condition `number < 5` is `True`.
 
 ```python
-from hurler import filter
+from hurler import filter_simple
 
-@filter
+@filter_simple
 def lower_than_five(number):
     return number < 5
 
