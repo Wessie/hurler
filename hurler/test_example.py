@@ -38,11 +38,13 @@ def dice_result(equal=None, higher_than=None, lower_than=None):
 
 def test_main():
     # Send an event to roll 1 dice
-    callback_register.call("dice_roll")
+    callback_register.send("dice_roll")
     # Send an event to roll several dices
-    callback_register.call("dice_roll", 6)
+    callback_register.send("dice_roll", amount_of_dice=6)
     # Send an event to roll a dice with many faces.
-    callback_register.call("dice_roll", 50)
+    callback_register.send("dice_roll", faces=50)
+    # Send an event to roll many dices
+    callback_register.send("dice_roll", amount_of_dice=100)
 
 
 @callback_register.register("dice_roll")
@@ -58,7 +60,7 @@ def roll_dice(amount_of_dice=1, faces=6):
         # Use random to get our dice result
         result = random.choice(range(1, faces + 1))
         # Now we call the dice_result event
-        callback_register.call("dice_result", result)
+        callback_register.send("dice_result", result)
 
 
 # The following functions will print our result when a dice rolls
