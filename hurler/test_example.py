@@ -56,7 +56,7 @@ def roll_dice(amount_of_dice=1, faces=6):
     :param amount_of_dice: The amount of dices to roll.
     :param faces: The amount of faces each dice has.
     """
-    for n in range(amount_of_dice):
+    for _ in range(amount_of_dice):
         # Use random to get our dice result
         result = random.choice(range(1, faces + 1))
         # Now we call the dice_result event

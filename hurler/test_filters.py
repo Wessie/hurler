@@ -31,7 +31,7 @@ def test_simple_chaining():
     """
     tester = lambda x: x + x
 
-    for i in xrange(100):
+    for _ in range(100):
         tester = always_true(tester)
 
     assert tester("x") == "xx"
@@ -48,7 +48,7 @@ def test_simple_non_chaining():
             return func(x + x)
         return wrapper
 
-    for i in xrange(100):
+    for i in range(100):
         if i % 25 == 0:
             tester = interrupt(tester)
         tester = always_true(tester)
@@ -62,7 +62,7 @@ def test_normal_chaining():
     """
     tester = lambda x: x + x
 
-    for i in xrange(100):
+    for _ in range(100):
         tester = always_normal_true()(tester)
 
     assert tester("x") == "xx"
@@ -79,7 +79,7 @@ def test_normal_non_chaining():
             return func(x + x)
         return wrapper
 
-    for i in xrange(100):
+    for i in range(100):
         if i % 25 == 0:
             tester = interrupt(tester)
         tester = always_normal_true()(tester)

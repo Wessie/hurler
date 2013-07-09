@@ -1,6 +1,9 @@
 Hurler
 ======
 
+[![codeq](https://codeq.io/github/Wessie/hurler/badges/master.png)](https://codeq.io/github/Wessie/hurler/branches/master)
+[![Build Status](https://travis-ci.org/Wessie/hurler.png?branch=master)](https://travis-ci.org/Wessie/hurler)
+
 A decorator based filtering mechanism of function calls. Hurler allows you to decorate a function to prevent calling of the function unless all conditions pass.
 
 
