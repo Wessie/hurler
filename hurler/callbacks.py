@@ -36,7 +36,7 @@ class Callbacks(object):
 
         return registrar
 
-    def call(self, event_name, *args, **kwargs):
+    def send(self, event_name, *args, **kwargs):
         """
         Method,
 
@@ -60,3 +60,5 @@ class Callbacks(object):
         for callback in self.callbacks[event_name]:
             # Handle errors (and maybe return values)
             callback(*args, **kwargs)
+
+    call = send

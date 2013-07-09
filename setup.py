@@ -10,7 +10,7 @@ setup(
     author="Wesley Bitter",
     author_email="hurler@wessie.info",
     url="http://github.com/Wessie/hurler/",
-    packages=["hurler"],
+    namespace_packages=["hurler"],
     tests_require=["pytest"],
     classifiers=[
         "Development Status :: 4 - Beta",
